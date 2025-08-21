@@ -1,0 +1,41 @@
+name: Merging into Main
+run-name: Merging ${{ github.head_ref }} into Main
+on:
+  pull_request:
+    types:
+      - closed
+    branches: 
+      - main
+jobs:
+  # Job only runs if PR closed in a merge and the merged branch is a 'reports/' branch (a new or updated TRR)
+  if_merged_report:
+    if: ${{ github.event.pull_request.merged == true && startsWith(github.head_ref, 'reports/') }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    # If the branch isn't an update branch (i.e. it's a new report branch), assign a new TRR number
+    - if: ${{ !startsWith(github.head_ref, 'reports/update/') }} 
+      name: Assign new TRR number
+      run: bash tools/trrassign/trrassign.sh
+    
+    # For both updates and new TRRs, rerun the indexer to ensure it has the most recent info
+    - name: Setup Go environment
+      uses: actions/setup-go@v5.5.0
+      with:
+         go-version: '1.21'
+    
+    - name: Run indexer
+      run: go run tools/index/main.go
+    
+    # Commit new index (and possibly renamed files) to main
+    - name: Commit updated files to branch
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add .
+        git status
+        git commit -m "Assigning TRR number and updating index"
+    
+    - name: Push changes
+      uses: ad-m/github-push-action@master

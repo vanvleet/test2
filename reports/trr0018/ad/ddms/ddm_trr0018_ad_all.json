@@ -1,0 +1,326 @@
+{
+  "style": {
+    "font-family": "sans-serif",
+    "background-color": "#ffffff",
+    "background-image": "",
+    "background-size": "100%",
+    "node-color": "#ffffff",
+    "border-width": 4,
+    "border-color": "#000000",
+    "radius": 50,
+    "node-padding": 5,
+    "node-margin": 2,
+    "outside-position": "auto",
+    "node-icon-image": "",
+    "node-background-image": "",
+    "icon-position": "inside",
+    "icon-size": 64,
+    "caption-position": "inside",
+    "caption-max-width": 200,
+    "caption-color": "#000000",
+    "caption-font-size": 16,
+    "caption-font-weight": "normal",
+    "label-position": "outside",
+    "label-display": "pill",
+    "label-color": "#000000",
+    "label-background-color": "#ffffff",
+    "label-border-color": "#000000",
+    "label-border-width": 2,
+    "label-font-size": 14,
+    "label-padding": 5,
+    "label-margin": 4,
+    "directionality": "directed",
+    "detail-position": "inline",
+    "detail-orientation": "parallel",
+    "arrow-width": 5,
+    "arrow-color": "#000000",
+    "margin-start": 5,
+    "margin-end": 5,
+    "margin-peer": 20,
+    "attachment-start": "normal",
+    "attachment-end": "normal",
+    "relationship-icon-image": "",
+    "type-color": "#000000",
+    "type-background-color": "#ffffff",
+    "type-border-color": "#000000",
+    "type-border-width": 0,
+    "type-font-size": 16,
+    "type-padding": 5,
+    "property-position": "outside",
+    "property-alignment": "colon",
+    "property-color": "#000000",
+    "property-font-size": 16,
+    "property-font-weight": "normal"
+  },
+  "nodes": [
+    {
+      "id": "n0",
+      "position": {
+        "x": 34.979473470600546,
+        "y": 310.9197079104918
+      },
+      "caption": "Enumerate SPNs",
+      "labels": [],
+      "properties": {
+        "Host": "Any",
+        "Option1": "Filter for SPNs in query",
+        "Option2": "Get all users with SPN attribute then filter"
+      },
+      "style": {
+        "border-color": "#68bc00"
+      }
+    },
+    {
+      "id": "n1",
+      "position": {
+        "x": 113.50089799939141,
+        "y": 549.8884095644285
+      },
+      "caption": "Send ADWS request",
+      "labels": [],
+      "properties": {
+        "Protocol": "TCP",
+        "Port": "9389"
+      },
+      "style": {
+        "border-color": "#68bc00"
+      }
+    },
+    {
+      "id": "n2",
+      "position": {
+        "x": -99.4321723840009,
+        "y": 756.1450227594038
+      },
+      "caption": "Send LDAP Search Request",
+      "labels": [],
+      "properties": {
+        "Protocol": "LDAP or LDAPs",
+        "Port": "389 or 636"
+      },
+      "style": {
+        "border-color": "#68bc00"
+      }
+    },
+    {
+      "id": "n3",
+      "position": {
+        "x": 494.37390951823903,
+        "y": 756.1450227594038
+      },
+      "caption": "Receive LDAP Search Request",
+      "labels": [
+        "CS ActiveDirectoryIncomingLdapSearchRequest",
+        "DefATP LdapSearch"
+      ],
+      "properties": {},
+      "style": {
+        "border-color": "#0062b1"
+      }
+    },
+    {
+      "id": "n4",
+      "position": {
+        "x": 365.03947253657606,
+        "y": 549.8884095644285
+      },
+      "caption": "Receive ADWS request",
+      "labels": [],
+      "properties": {},
+      "style": {
+        "border-color": "#0062b1"
+      }
+    },
+    {
+      "id": "n5",
+      "position": {
+        "x": 417.47947347060057,
+        "y": 310.9197079104918
+      },
+      "caption": "Send AD Data",
+      "labels": [],
+      "properties": {
+        "Host": "DC"
+      },
+      "style": {
+        "border-color": "#0062b1"
+      }
+    },
+    {
+      "id": "n6",
+      "position": {
+        "x": 662.1343202816306,
+        "y": 310.91970130324233
+      },
+      "caption": "Request TGS",
+      "labels": [],
+      "properties": {
+        "Host": "Any",
+        "Protocol": "Kerberos",
+        "Request": "TGS-REQ",
+        "Needs": "Valid TGT",
+        "Optional": "Downgrade encryption"
+      },
+      "style": {
+        "border-color": "#68bc00"
+      }
+    },
+    {
+      "id": "n7",
+      "position": {
+        "x": 906.7891670926608,
+        "y": 310.9197079104918
+      },
+      "caption": "Send TGS",
+      "labels": [
+        "CS ActiveDirectoryServiceAccessRequest",
+        "Windows 4769"
+      ],
+      "properties": {
+        "Host": "DC"
+      },
+      "style": {
+        "border-color": "#0062b1"
+      }
+    },
+    {
+      "id": "n8",
+      "position": {
+        "x": 1128.848860714721,
+        "y": 310.91970791049175
+      },
+      "caption": "Crack Hash",
+      "labels": [],
+      "properties": {
+        "Host": "Any"
+      },
+      "style": {
+        "border-color": "#68bc00"
+      }
+    },
+    {
+      "id": "n9",
+      "position": {
+        "x": 779.6168301617711,
+        "y": 166.32827372303257
+      },
+      "caption": "Intercept TGS",
+      "labels": [],
+      "properties": {},
+      "style": {
+        "border-color": "#68bc00"
+      }
+    },
+    {
+      "id": "n10",
+      "position": {
+        "x": 779.6168301617711,
+        "y": 48.32276757323075
+      },
+      "caption": "Harvest TGS",
+      "labels": [],
+      "properties": {},
+      "style": {
+        "border-color": "#68bc00"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "n0",
+      "fromId": "n0",
+      "toId": "n1",
+      "type": "",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n1",
+      "fromId": "n0",
+      "toId": "n2",
+      "type": "",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n2",
+      "fromId": "n2",
+      "toId": "n3",
+      "type": "",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n3",
+      "fromId": "n1",
+      "toId": "n4",
+      "type": "",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n4",
+      "fromId": "n3",
+      "toId": "n5",
+      "type": "",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n5",
+      "fromId": "n5",
+      "toId": "n6",
+      "type": "",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n6",
+      "fromId": "n6",
+      "toId": "n7",
+      "type": "",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n7",
+      "fromId": "n7",
+      "toId": "n8",
+      "type": "",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n8",
+      "fromId": "n4",
+      "toId": "n5",
+      "type": "",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n9",
+      "fromId": "n7",
+      "toId": "n6",
+      "type": "",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n10",
+      "fromId": "n9",
+      "toId": "n8",
+      "type": "",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n11",
+      "fromId": "n10",
+      "toId": "n8",
+      "type": "",
+      "properties": {},
+      "style": {}
+    }
+  ]
+}

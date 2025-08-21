@@ -1,0 +1,10 @@
+{
+    "id": "TRR0001",
+    "external_ids": [""],
+    "tactics": ["Initial Access", "Impact"],
+    "name": "Smash with a Brick",
+    "platforms": ["phy"],
+    "contributors": ["Andrew VanVleet", "Adam Przybyszewski"],
+    "procedures": {"A": "Brick Key", "B": "Destructo-brick"},
+    "pub_date": "2025-02-10"
+ }
