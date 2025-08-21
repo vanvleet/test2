@@ -1,0 +1,25 @@
+[
+  {
+    "contributors": [
+      "Andrew VanVleet"
+    ],
+    "external_ids": [
+      "T1558.003"
+    ],
+    "id": "TRR0018",
+    "name": "Kerberos Service Ticket Roasting (Kerberoasting)",
+    "platforms": [
+      "ad"
+    ],
+    "procedures": {
+      "A": "Enumerate SPNs with LDAP",
+      "B": "Enumerate SPNs with ADWS",
+      "C": "Intercept Tickets On the Network",
+      "D": "Harvest Tickets off Endpoints"
+    },
+    "pub_date": "2025-02-18",
+    "tactics": [
+      "Credential Access"
+    ]
+  }
+]
