@@ -22,7 +22,7 @@ modeling! To begin contributing, please follow the information detailed in the
 
 [Contribution Guide]: ./docs/CONTRIBUTING.md
 [TRR Guide]: ./docs/TECHNIQUE-RESEARCH-REPORT.md
-[searchable library]: https://github.edwardjones.com/pages/ejsecure/trr-library/
-[threat matrix]: https://github.edwardjones.com/pages/ejsecure/trr-library/matrixview.html
+[searchable library]: https://????/pages/ejsecure/trr-library/
+[threat matrix]: https://????/pages/ejsecure/trr-library/matrixview.html
 [Project Overview]: ./docs/PROJECT-OVERVIEW.md
 [FAQ]: ./docs/FAQ.md
