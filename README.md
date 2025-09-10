@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to the Technique Research Report (TRR) Repository! This is a collection
+Hello, and welcome to the Technique Research Report (TRR) Repository! This is a collection
 of reports documenting attack technique research and modeling, for use in
 understanding, emulating, and detecting cyber attacks. For more information on
 TRRs, see the [TRR Guide]. To read about the initiative's goals, see
