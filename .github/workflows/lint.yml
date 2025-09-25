@@ -1,5 +1,5 @@
-name: Lint and test index
-run-name: Linting and test indexing ${{ github.head_ref }} on PR creation/modification
+name: Lint and test indexer parsing
+run-name: Linting and testing indexer for ${{ github.head_ref }} on PR creation/modification
 on: 
    pull_request:
       types: [opened, synchronize, reopened]
@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-      - name: Get list of markdown files changed in PR
+      - name: Get list of report markdown files changed in PR
         id: changed-markdown-files
         uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # pinned to v47
         with:
-          files: README.md
+          files: reports/README.md
           
       - name: Check out repo
         uses: actions/checkout@v4
