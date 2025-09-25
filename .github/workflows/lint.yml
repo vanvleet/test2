@@ -29,5 +29,5 @@ jobs:
       #  run: go run tools/trrlint/main.go ${{ steps.changed-markdown-files.outputs.all_changed_files }}
 
       # Run the index script in merge_test mode to ensure proper parsing for indexing.
-      - name: test print
-        run: python3 tools/index/index.py merge_test ${{ steps.changed-markdown-files.outputs.all_changed_files }}
+      - name: Run indexing test
+        run: python3 tools/index/index.py merge_test -f ${{ steps.changed-markdown-files.outputs.all_changed_files }}
