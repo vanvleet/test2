@@ -1,0 +1,33 @@
+name: Lint and test index
+run-name: Linting and test indexing ${{ github.head_ref }} on PR creation/modification
+on: 
+   pull_request:
+      types: [opened, synchronize, reopened]
+jobs: 
+   lint_and_test_index: 
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Get list of markdown files changed in PR
+        id: changed-markdown-files
+        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # pinned to v47
+        with:
+          files: README.md
+          
+      - name: Check out repo
+        uses: actions/checkout@v4
+      
+      - name: Setup Go environment
+        uses: actions/setup-go@v5.5.0
+        with:
+         go-version: '1.21'
+       
+      - name: Install dependencies
+        run: go get github.com/yuin/goldmark 
+      
+      #- name: Run linter
+      #  run: go run tools/trrlint/main.go ${{ steps.changed-markdown-files.outputs.all_changed_files }}
+
+      # Run the index script in merge_test mode to ensure proper parsing for indexing.
+      - name: test print
+        run: python3 tools/index/index.py merge_test ${{ steps.changed-markdown-files.outputs.all_changed_files }}
