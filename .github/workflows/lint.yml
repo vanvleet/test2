@@ -26,8 +26,10 @@ jobs:
         run: go get github.com/yuin/goldmark 
       
       #- name: Run linter
-      #  run: go run tools/trrlint/main.go ${{ steps.changed-markdown-files.outputs.all_changed_files }}
+      # if: steps.changed-markdown-files.outputs.any_changed == 'true' 
+      # run: go run tools/trrlint/main.go ${{ steps.changed-markdown-files.outputs.all_changed_files }}
 
       # Run the index script in merge_test mode to ensure proper parsing for indexing.
       - name: Run indexing test
+        if: steps.changed-markdown-files.outputs.any_changed == 'true'
         run: python3 tools/index/index.py merge_test -f ${{ steps.changed-markdown-files.outputs.all_changed_files }}
