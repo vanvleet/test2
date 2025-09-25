@@ -1,0 +1,47 @@
+name: Merging PR into Main
+run-name: Merging ${{ github.head_ref }} into main
+on:
+  pull_request:
+    types:
+      - closed
+    branches: 
+      - main
+jobs:
+  # Job only runs if PR closed in a merge
+  if_merged_report:
+    if: ${{ github.event.pull_request.merged == true }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Get list of report markdown files changed in PR
+      id: changed-markdown-files
+      uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # pinned to v47
+      with:
+        files_yaml: |
+            new:
+              - reports/trr0000/**/README.md   #this will only be if the PR has a net new TRR, which will be in a trr0000 folder.
+            all:    #get all TRR reports changed for indexing
+              - reports/**/README.md
+
+    # If the branch isn't an update branch (i.e. it's a new report branch), assign a new TRR number
+    - name: Assign new TRR number
+      if: steps.changed-markdown-files.outputs.new_any_changed == 'true'  
+      run: bash tools/trrassign/trrassign.sh   #without args, the tool will assign TRR0000 to the next available number
+
+    # update the index for all modified reports in the PR
+    - name: Run indexing test
+      if: steps.changed-markdown-files.outputs.all_any_changed == 'true'
+      run: python3 tools/index/index.py merge_test -f ${{ steps.changed-markdown-files.outputs.all_all_changed_files }}
+      
+    # Commit new index (and possibly renamed files) to main
+    - name: Commit updated files to branch
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add .
+        git status
+        git commit -m "Assigning TRR number and updating index"
+    
+    #- name: Push changes
+    #  uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa # pinned to v1.0.0
